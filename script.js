@@ -42,3 +42,21 @@ function  verificaTentativas(){
     document.getElementById("botao2").disabled = true;
   }
 }
+
+ // create an object we'll use to hold the reference to the PWA 
+// install event
+ let deferredPrompt;
+// now add an event listener to respond to the event. Right 
+// before the browser installs the PWA, it fires the 
+// beforeinstallprompt event. Here, we'll manage the 
+// installation ourselves
+ window.addEventListener('beforeinstallprompt', (event) => {
+    // don't allow the browser to do its install now, we want to 
+    // do it when the user taps our install button
+    event.preventDefault();
+    // stash the event object so we can use it later (when the 
+    // user taps the install button)
+    deferredPrompt = event;
+    // now unhide the Install button so the user can tap it!
+    installButton.style.display = 'block';
+ });
